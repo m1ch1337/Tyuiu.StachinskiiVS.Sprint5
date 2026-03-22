@@ -6,17 +6,22 @@ namespace Tyuiu.StachinskiiVS.Sprint5.Task5.V8.Lib
     {
         public double LoadFromDataFile(string path)
         {
-            double minValue = int.MaxValue;
+            double minValue = double.MaxValue;
             using (StreamReader reader = new StreamReader(path))
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                string line = reader.ReadToEnd();
+                string[] numbers = line.Split(new char[] { ' ', '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (string number in numbers)
                 {
-                    if (Convert.ToDouble(line) < minValue)
-                        minValue = Math.Round(Convert.ToDouble(line), 3);
+                    double value = double.Parse(number.Replace('.', ','));
+                    if (value < minValue)
+                    {
+                        minValue = value;
+                    }
                 }
-                return minValue;
             }
+            return Math.Round(minValue, 3);
         }
     }
 }
