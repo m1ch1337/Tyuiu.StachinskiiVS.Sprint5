@@ -1,5 +1,9 @@
 <Solution>
-  <Folder Name="/Task0/" />
+  <Folder Name="/Task0/">
+    <Project Path="Tyuiu.StachinskiiVS.Sprint5.Task0.V7.Lib/Tyuiu.StachinskiiVS.Sprint5.Task0.V7.Lib.csproj" />
+    <Project Path="Tyuiu.StachinskiiVS.Sprint5.Task0.V7.Test/Tyuiu.StachinskiiVS.Sprint5.Task0.V7.Test.csproj" />
+    <Project Path="Tyuiu.StachinskiiVS.Sprint5.Task0.V7/Tyuiu.StachinskiiVS.Sprint5.Task0.V7.csproj" />
+  </Folder>
   <Folder Name="/Task1/" />
   <Folder Name="/Task2/" />
   <Folder Name="/Task3/" />
