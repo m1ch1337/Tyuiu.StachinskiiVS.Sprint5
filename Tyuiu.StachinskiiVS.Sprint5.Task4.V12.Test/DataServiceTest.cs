@@ -9,10 +9,10 @@ namespace Tyuiu.StachinskiiVS.Sprint5.Task4.V12.Test
         public void TestMethod1()
         {
             DataService ds = new DataService();
-            string path = Path.Combine(Path.GetTempPath(), "InPutDataFileTask4V12.txt");
+            string path = Path.Combine(Path.GetTempPath(), "InPutDataFileTask4V0.txt");
             File.WriteAllText(path, "2.5");
             double res = ds.LoadFromDataFile(path);
-            double wait = Math.Round(Math.Pow(2.5, 3) - Math.Pow(2.5, 2) + (4 * 2.5) - 8, 3);
+            double wait = Math.Round(Math.Cos(Math.Pow(2.5, 3)) + (2.5 / 2), 3);
             Assert.AreEqual(wait, res);
         }
     }
