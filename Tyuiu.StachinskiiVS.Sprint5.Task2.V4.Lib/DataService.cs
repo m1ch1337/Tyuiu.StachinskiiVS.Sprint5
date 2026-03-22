@@ -6,11 +6,10 @@ namespace Tyuiu.StachinskiiVS.Sprint5.Task2.V4.Lib
     {
         public string SaveToFileTextData(int[,] matrix)
         {
-            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask2.csv";
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
+            string tempPath = Path.GetTempPath();
+            string path = Path.Combine(tempPath, "OutPutFileTask2.csv");
 
-            if (fileExists)
+            if (File.Exists(path))
             {
                 File.Delete(path);
             }
@@ -18,51 +17,36 @@ namespace Tyuiu.StachinskiiVS.Sprint5.Task2.V4.Lib
             int rows = matrix.GetUpperBound(0) + 1;
             int columns = matrix.Length / rows;
 
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < columns; j++)
-                {
-                    if (matrix[i, j] > 0)
-                    {
-                        matrix[i, j] = 1;
-                    }
-                    else
-                    {
-                        matrix[i, j] = 0;
-                    }
-                }
-            }
-
-            string str = "";
+            int[,] resultMatrix = new int[rows, columns];
 
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
                 {
-                    if (j != columns - 1)
-                    {
-                        str = str + matrix[i, j] + ";";
-                    }
-                    else
-                    {
-                        str = str + matrix[i, j];
-                    }
+                    resultMatrix[i, j] = matrix[i, j] > 0 ? 1 : 0;
                 }
-
-                if (i != rows - 1)
-                {
-                    File.AppendAllText(path, str + Environment.NewLine);
-                }
-                else
-                {
-                    File.AppendAllText(path, str);
-                }
-
-                str = "";
             }
+
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < columns; j++)
+                    {
+                        writer.Write(resultMatrix[i, j]);
+                        if (j < columns - 1)
+                        {
+                            writer.Write(";");
+                        }
+                    }
+                    if (i < rows - 1)
+                    {
+                        writer.WriteLine();
+                    }
+                }
+            }
+
             return path;
-
-
         }
     }
 }

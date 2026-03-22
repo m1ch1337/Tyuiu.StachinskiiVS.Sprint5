@@ -9,11 +9,16 @@ namespace Tyuiu.StachinskiiVS.Sprint5.Task2.V4.Test
         public void ValidCheckedExistsFile()
         {
             DataService ds = new DataService();
-            string path = @" C:\Users\stach\source\repos\Tyuiu.StachinskiiVS.Sprint5\Tyuiu.StachinskiiVS.Sprint5.Task2.V4\bin\Debug\OutPutFileTask2.csv";
-            FileInfo fileInfo = new FileInfo(path);
-            bool fileExists = fileInfo.Exists;
+            int[,] matrix = new int[,] { { 5, -5, -6 }, { -5, 6, -7 }, { 7, 3, 5 } };
+            string savedPath = ds.SaveToFileTextData(matrix);
+            bool fileExists = File.Exists(savedPath);
             bool wait = true;
             Assert.AreEqual(wait, fileExists);
+
+            if (fileExists)
+            {
+                File.Delete(savedPath);
+            }
         }
     }
 }
