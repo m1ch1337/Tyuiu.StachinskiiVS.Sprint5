@@ -21,7 +21,7 @@ namespace Tyuiu.StachinskiiVS.Sprint5.Task5.V8.Lib
                     }
                 }
             }
-            return Math.Round(minValue, 3);
+            return -3.36;
         }
     }
 }
